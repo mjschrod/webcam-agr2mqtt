@@ -1,0 +1,35 @@
+version: "3"
+services:
+  webcam-agr2mqtt:
+    image: webcam-agr2mqtt:0.1
+    container_name: webcam-agr2mqtt-0.1
+    environment:
+       - MIN_ANGLE=40                                # Minimum angle of gauge (6 aclock is 0° & 360°) / default: 0
+       - MAX_ANGLE=317                               # Maximum angle of gauge / default: 360
+       - MIN_VALUE=0                                 # Minimum value of gauge / default: 0
+       - MAX_VALUE=150                               # Maximum value of gauge / default: 1000
+       - UNITS=cm                                   # Unit of the gauge / default: 'a-unit'
+
+       - READINGS=5                                   # amount of squential readings
+       - PAUSE_BTWN_READINGS=2                        # pause between readings
+       - PAUSE_BTWN_MEASUREMENTS=5                   # pause between measurements (sequences)
+       - CAMERALEVELLING=2                            # time to wait for camera after switchin LED on
+
+       - SEND_SINGLE_READINGS=no                     # yes or no
+       - SEND_MEAN_READINGS=yes                      # yes or no / sending an average value of one sequence
+
+       - MQTT_IP=192.168.0.142                        # IP MQTT-Server / default: 192.168.0.2
+       - MQTT_PORT=1883                               # Port MQTT-Server / default: 1883
+       - MQTT_USER=mqttuser                           # Login MQTT-Server / default: mqttuser
+       - MQTT_PASS=mqttpassword                       # Password MQTT-Server /default: mqttpassword
+       - MQTT_CLIENTID=MQTT2_dingsbums                # Name MQTT-Client / default: MQTT2_dingsbumms
+#       - MQTT_TOPIC_SINGLE=gauge_1_single            # Name MQTT-Topic single values / default: gauge_1_single
+#       - MQTT_TOPIC_MEAN=gauge_1_mean                  # Name MQTT-Topic average values / default: gauge_1_mean
+
+       - "WEBCAM_IP=192.168.0.61"                     # IP Webcam / default: 192.168.0.3
+#       - WEBCAM_PATH="/snapshot.jpg"                   # Webcam: path to _still_ image / default: '/snapshot.jpg'
+#       - WEBCAM_PATH_LED_ON=/cm?cmnd=Power%20ON      # Webcam: path to turn LED on / default: '/cm?cmnd=Power%20ON'
+#       - WEBCAM_PATH_LED_OFF=/cm?cmnd=Power%20OFF    # Webcam: path to turn LED off/ default: '/cm?cmnd=Power%20OFF'
+
+    restart: always
+
