@@ -300,6 +300,8 @@ while actualreading < (int(readings) + int(666)):
             messwerte.clear()
             print ("Messwerte gelöscht")
             print(messwerte)
+            #Nächste Zeile ist neu:
+            client.disconnect(client)
             time.sleep (pause_btwn_measurements)
             actualreading = 1
             requests.get(urlon)
