@@ -308,10 +308,9 @@ while actualreading < (int(readings) + int(666)):
             time.sleep (camera_lightning)
 
     except ValueError as ve:
-	    	print('Error read the image!!')
+        print('Error read the image!!')
         x = "do nothing"
     except IndexError:
-	    	print('Error calculate the value!!')
+        print('Error calculate the value!!')
         x = "do nothing"
-	
-
+        
