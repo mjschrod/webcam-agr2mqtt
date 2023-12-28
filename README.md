@@ -1,6 +1,7 @@
 # webcam-agr2mqtt
 
 Reads an analog gauge on a webcam and provides result via mqtt
+The defaults are adapted to the pathes of a tasmota esp32cam.
 
 Still in development / testing
 
