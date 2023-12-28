@@ -253,15 +253,14 @@ while actualreading < (int(readings) + int(666)):
                 value_sent = ("%.2f" % val)
                 client_id = MQTT_CLIENTID
                 client = mqtt.Client(client_id)
-                if client.is_connected() == False:
-                    client.on_connect = on_connect
+                client.on_connect = on_connect
 			# enable TLS
 			#client.tls_set(tls_version=mqtt.ssl.PROTOCOL_TLS)
 			# set username and password
-                    client.username_pw_set(MQTT_USER, MQTT_PASS)
+                client.username_pw_set(MQTT_USER, MQTT_PASS)
 
 			# connect to MQTT broker, set the broker and port
-                    client.connect(MQTT_IP, MQTT_PORT)
+                client.connect(MQTT_IP, MQTT_PORT)
                 client.publish(MQTT_TOPIC_SINGLE, value_sent)
                 client.loop_start()
             time.sleep(pause_btwn_readings)
@@ -275,7 +274,7 @@ while actualreading < (int(readings) + int(666)):
             messwerte.append(val)
             meanvalue = np.mean(messwerte)
             print("Meanvalue is ", meanvalue)
-
+            client.disconnect(client)
 
         else:
             if (meanvalue>0 and SEND_MEAN_READINGS=='yes'):
@@ -283,8 +282,7 @@ while actualreading < (int(readings) + int(666)):
                 #client_id = 'MQTT2_oilcamanalyzer.1'
                 client_id = MQTT_CLIENTID
                 client = mqtt.Client(client_id)
-                if client.is_connected() == False:
-                    client.on_connect = on_connect
+                client.on_connect = on_connect
 			# enable TLS
 			#client.tls_set(tls_version=mqtt.ssl.PROTOCOL_TLS)
 			# set username and password
